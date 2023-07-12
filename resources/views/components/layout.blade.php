@@ -2,7 +2,7 @@
 <div class="container-fluid min-vh-100 ">
     <div class="row overflow-hidden">
         <!--SideBar-->
-        <div class="col-auto sidebar min-vh-100 p-0">
+    <div class="col-auto sidebar min-vh-100 p-0">
             <div class="container-fluid h-100 p-0 ">
                 <div class="row m-0 h-100">
                     <div class="col-auto p-0 w-100">
