@@ -1,4 +1,4 @@
-<x-header>Home</x-header>
+<x-header>UAT</x-header>
 <div class="container-fluid min-vh-100 ">
     <div class="row overflow-hidden">
         <!--SideBar-->
