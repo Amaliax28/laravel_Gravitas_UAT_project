@@ -1,7 +1,7 @@
 <li>
     <a href="">
         <div
-            class="sidebar-link justify-content-center align-items-center justify-content-md-start">
+            class="sidebar-link  align-items-center ">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none"
             xmlns="http://www.w3.org/2000/svg" class="sidebar-icon ">
             <path

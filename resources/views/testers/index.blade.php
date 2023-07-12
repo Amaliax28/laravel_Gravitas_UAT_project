@@ -18,12 +18,12 @@
             <x-pageTitle>
                 <span class="grey"> {{ $project['projectName'] }} / </span> {{ $session['sessionName'] }}
                 <div class="btn-container ">
-                    <button class="btn blue-border border-0" data-bs-target="#edit-session-modal" data-bs-toggle="modal"
-                        type="button" title="Edit this session's details">
+                    <button class="btn blue-border no-shadow border-0 " data-bs-target="#edit-session-modal" data-bs-toggle="modal"
+                        type="button " title="Edit This Session's Details">
                         Edit Session
                     </button>
                     <a href="/session/{{$session->id}}/export">
-                        <button class="btn blue-border" data-bs-target="#modal-edit" data-bs-toggle="modal" type="button"
+                        <button class="btn blue-border " data-bs-target="#modal-edit" data-bs-toggle="modal" type="button"
                         title="Import all users' responses to Excel">
                             Export to Excel
                         </button>

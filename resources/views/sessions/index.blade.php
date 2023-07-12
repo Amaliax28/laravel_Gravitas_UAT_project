@@ -17,7 +17,7 @@
                     </button>
                 @elseif (Auth::check() && (Auth::user()->roles == 'admin') )
                      <button class="h-100 btn blue btn-create-project" id="create-project-btn"
-                    data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">
+                    data-bs-target="#new-project-modal" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Create a New Session For This Project" type="button">
                     Create new session
 
                 @endif
@@ -133,9 +133,8 @@
                                 @endif
                             @endforeach
                         @else
-                            <tr onclick="window.location.href='/project/{{ $project['id'] }}/testers';"
-                                class="align-middle border-0 " data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="View testers assigned to this project">
+                            <tr class="align-middle border-0 " data-bs-toggle="tooltip" data-bs-placement="top"
+                                title="Start By Creating a New Session">
                                 <td colspan="5" class="align-middle border-0 border-radius-10">There are currently no
                                     sessions created for this project.
                                 </td>
@@ -146,14 +145,13 @@
             </div>
         </div>
         <div class="w-100 duration">
-            Total Duration :
             @php
                 if (isset($totalDuration) && $totalDuration){
                     $durationString = $totalDuration;
                     $sumDurationFormatted = gmdate('H:i:s', $durationString);
                         // Split the duration string into hours, minutes, and seconds
                     list($hours, $minutes, $seconds) = explode(":", $sumDurationFormatted);
-                    echo $hours . 'h '. $minutes. 'm ' . $seconds . 's';
+                    echo 'Total Duration :'.$hours . 'h '. $minutes. 'm ' . $seconds . 's';
 
                 }
             @endphp
