@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="login-error">
-                                    <span class="error-text">
+                                    <span class="text-error">
                                         @error('password'){{$message}}@enderror
                                     </span>
                                 </div>
