@@ -3,20 +3,21 @@
         <div>
 
             <x-navbar>
-                <x-searchbar/>
-                @if(Auth::check() && !(Auth::user()->roles == 'tester') )
-                    <button class="h-100 btn blue btn-create-project" id="create-project-btn" data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">Create project</button>
-                @endif
+                <x-searchbar>
+                    @if(Auth::check() && !(Auth::user()->roles == 'tester') )
+                        <button class="h-100 btn blue btn-create-project" id="create-project-btn" data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">Create project</button>
+                    @endif
+                </x-searchbar>
             </x-navbar>
         </div>
         @if(Auth::check() && !(Auth::user()->roles == 'tester') ) <!-- Check if the user is not tester -->
             @if(Auth::check() && !(Auth::user()->roles == 'admin') ) <!-- Check if user is not admin -->
-                <x-pageTitle>All Projects</x-pageTitle>
+                <x-pageTitle>ALL PROJECTS</x-pageTitle>
             @else
-                <x-pageTitle>All Projects</x-pageTitle>
+                <x-pageTitle>ALL PROJECTS</x-pageTitle>
             @endif
         @else
-            <x-pageTitle>All Projects</x-pageTitle>
+            <x-pageTitle>ALL PROJECTS</x-pageTitle>
         @endif
         <div class="content">
             <div class="table-container">

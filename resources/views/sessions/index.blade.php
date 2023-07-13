@@ -9,18 +9,18 @@
                 @endif
             </div>
             <x-navbar>
-                <x-searchbar />
-                @if (Auth::check() && !(Auth::user()->roles == 'tester') && $project->user_id == auth()->user()->id)
-                    <button class="h-100 btn blue btn-create-project" id="create-project-btn"
-                        data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">
+                <x-searchbar>
+                    @if (Auth::check() && !(Auth::user()->roles == 'tester') && $project->user_id == auth()->user()->id)
+                        <button class="h-100 btn blue btn-create-project" id="create-project-btn"
+                            data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">
+                            Create new session
+                        </button>
+                    @elseif (Auth::check() && (Auth::user()->roles == 'admin') )
+                        <button class="h-100 btn blue btn-create-project" id="create-project-btn"
+                        data-bs-target="#new-project-modal" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Create a New Session For This Project" type="button">
                         Create new session
-                    </button>
-                @elseif (Auth::check() && (Auth::user()->roles == 'admin') )
-                     <button class="h-100 btn blue btn-create-project" id="create-project-btn"
-                    data-bs-target="#new-project-modal" data-bs-toggle="modal" data-bs-toggle="tooltip" data-bs-placement="top" title="Create a New Session For This Project" type="button">
-                    Create new session
-
-                @endif
+                    @endif
+                </x-searchbar>
             </x-navbar>
             <x-pageTitle>
                 {{ $project['projectName'] }}

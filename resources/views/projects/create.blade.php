@@ -7,12 +7,12 @@
                     <div class="col-auto label-container">
                         <label for="projectImg">Project Image</label>
                     </div>
-                    <div class="col">
-                        <label for="projectImage">
+                    <div class="col  project-image-col" >
+                        <label for="projectImage" >
                             <input class="form-control d-none" id="projectImage" type="file" accept="image/*"
                                 name="projectImg" onchange="preview()" >
                             <div
-                                class="img-box  overflow-hidden position-relative d-flex align-items-center justify-content-center">
+                                class="img-box overflow-hidden position-relative d-flex align-items-center justify-content-center">
                                 <img src="#" alt="" class=" d-none " id="frame">
                                 <i id="add-logo">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
