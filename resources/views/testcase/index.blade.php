@@ -5,11 +5,12 @@
                 <x-back-btn href="/project/{{$project->id}}/session/{{$session->id}}/testers" />
             </div>
             <x-navbar>
-                <x-searchbar/>
-                <button class="h-100 btn blue btn-create-project" id="create-project-btn"
-                data-bs-target="#new-testcase-modal" data-bs-toggle="modal" type="button">
-                    Create test case
-                </button>
+                <x-searchbar>
+                    <button class="h-100 btn blue btn-create-project" id="create-project-btn"
+                    data-bs-target="#new-testcase-modal" data-bs-toggle="modal" type="button">
+                        Create test case
+                    </button>
+                </x-searchbar>
             </x-navbar>
             <x-pageTitle>
                 <span class="grey"> {{ $project['projectName'] }} / </span> {{ $session['sessionName'] }}
