@@ -61,6 +61,15 @@ input {
 
 }
 
+input:focus,
+textarea:focus {
+    outline:none!important;
+    border-color: var(--black-color);
+}
+
+
+
+
 .btn:focus{
     box-shadow: none;
 }
@@ -398,6 +407,7 @@ input {
 
 .login input:focus, .input-group input:focus {
     outline: none;
+    border-color:var(--black-color);
 }
 
 
@@ -725,6 +735,7 @@ input {
 
 .search-box-focus{
     outline:0!important;
+    border-color:var(--black-color);
     background: transparent!important;
 }
 
@@ -745,6 +756,7 @@ input {
         padding-top:10px!important;
         gap:10px;
     }
+
 }
 
 
@@ -1203,6 +1215,11 @@ input {
 
 }
 
+.form-row input:focus,
+.modal-form select:focus{
+    border-color: var(--black-color);
+}
+
 .responseStatus{
     padding:10px;
     border-radius: 6px;
@@ -1230,6 +1247,10 @@ input {
 .modal-form textarea{
     height: 72px;
     resize: none;
+}
+
+.modal-form textarea:focus{
+    border-color: var(--black-color);
 }
 
 textarea.comment{
@@ -1777,17 +1798,7 @@ textarea.comment{
     }
 
 
-    .form-field:focus,
-    .register-user select:focus{
-        outline:0!important;
-        background: transparent!important;
-        box-shadow: 0 0 5px rgba(156,163,175,0.3)!important;
-    }
 
-    .register-user .password input:focus{
-        box-shadow: -5px 0 8px -5px rgba(156,163,175,0.3)!important;
-
-    }
 
     .register-user .btn-cont{
         padding: 5px;
@@ -1807,6 +1818,20 @@ textarea.comment{
         box-shadow: none;
     }
 
+
+}
+
+.form-field:focus,
+.register-user select:focus{
+    outline:0!important;
+    background: transparent!important;
+    box-shadow:-5px 0 8px -5px rgba(0, 83, 228, 0.3)!important;
+}
+
+
+
+.register-user .password input:focus{
+    box-shadow: -5px 0 8px -5px rgba(255, 55, 0, 0.3)!important;
 
 }
 
@@ -1954,6 +1979,17 @@ textarea.comment{
     font-weight: 400;
     line-height: normal
   }
+
+  @media screen and (max-width:768px){
+
+    .header .btn-container{
+        padding-top:10px;
+        justify-content: start;
+    }
+  }
+
+
+
 
 
 
