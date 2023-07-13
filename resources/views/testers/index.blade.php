@@ -5,14 +5,15 @@
                 <x-back-btn href="/project/{{$project->id}}/sessions" />
             </div>
             <x-navbar>
-                <x-searchbar />
+                <x-searchbar>
                 @if(isset($session))
-                <a href="/project/{{$project->id}}/session/{{$session->id}}/">
-                    <button class="h-100 btn blue btn-create-project" id="create-project-btn"
-                        data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">
-                        View Test Cases
-                    </button>
-                </a>
+                    <a href="/project/{{$project->id}}/session/{{$session->id}}/">
+                        <button class="h-100 btn blue btn-create-project" id="create-project-btn"
+                            data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">
+                            View Test Cases
+                        </button>
+                    </a>
+                </x-searchbar>
                 @endif
             </x-navbar>
             <x-pageTitle>

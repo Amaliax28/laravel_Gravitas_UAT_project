@@ -50,7 +50,7 @@ input {
 }
 
 .btn{
-    font-size:16px;
+    font-size:1rem;
     border-radius: 6px;
     text-align: center;
     min-height: 40px;
@@ -225,11 +225,18 @@ input {
 .header{
     font-family: 'Montserrat';
     font-weight: 700;
-    font-size: 40px;
+    font-size: 2.5rem;
     color: #1E5F74;
     padding-left: 30px;
 
 }
+
+@media (max-width: 767px) {
+    .header {
+      font-size: 2rem; /* Equivalent to 32px */
+    }
+  }
+
 
 .header .btn-container{
     width: 90%;
@@ -248,7 +255,6 @@ input {
     padding-top: 62px;
     padding-bottom: 66px;
     word-wrap: normal;
-    overflow: hidden;
 }
 
 .header.response{
@@ -425,6 +431,7 @@ input {
 .pass-group input{
     width: 100%;
     padding: 0 20px;
+    color: var(--white);
 }
 
 
@@ -688,57 +695,58 @@ input {
 
 /* SEARCH BAR */
 
-.navbar form{
-    width: 34%;
-}
-
-.input-group.search{
-    width:100%;
-    white-space: nowrap;
-    flex-wrap: nowrap;
-    transition: box-shadow 0.3s ease;
-
-}
-
-
- .search button, .search input{
-    border:none;
+.search-group{
+    width: 400px;
+    gap: 10px;
+    padding:6px 0px 6px 16px;
     border-radius: 6px;
-    border: 1px solid #9CA3AF;
- }
+    border: 1px solid var(--light-grey-2, #9CA3AF);
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    transition: width 0.3s ease;
 
- .search button{
-    border-right: none;
-    width: 10%;
- }
+}
 
- .search button svg{
-    width: 100%;
- }
-
- .search input{
-    background:transparent;
-    width: 90%;
-    border-left: none;
-    padding: 6px 20px 6px 10px;
+ .search-group input{
+    padding-right: 30px;
 
  }
 
- .search input::placeholder{
+ .search-group ::placeholder{
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
     color: #9CA3AF;
  }
 
- .search input:focus{
+ .search-group input:focus{
     outline: none;
 }
+
+.search-box-focus{
+    outline:0!important;
+    background: transparent!important;
+}
+
+
 @media screen and (min-width: 1200px){
-    .navbar form{
-        max-width: 30%;
+    .search-box-enlarge{
+        width:600px!important;
     }
 }
+
+@media screen and (max-width: 768px){
+    .search-group{
+        width: 100%;
+    }
+
+
+    .create-project-col {
+        padding-top:10px!important;
+        gap:10px;
+    }
+}
+
 
 @media screen and (max-width: 900px) {
     .navbar{
@@ -757,14 +765,14 @@ input {
         padding-bottom: 10px;
     }
 
-    .btn-create-project{
-        margin-top:10px;
-        width: auto;
-        padding: 10px 5px;
-    }
 
     .search button{
         width:10%;
+    }
+
+
+    .header{
+        padding-left: 0;
     }
 
   }
@@ -1133,9 +1141,14 @@ input {
 }
 
  .user-form .img-box img{
-    object-fit: cover;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+
+}
+
+.project-image-col{
+    max-height: 120px;
 }
 .modal-form .img-box img{
     object-fit: contain;
