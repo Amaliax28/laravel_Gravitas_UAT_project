@@ -28,6 +28,8 @@ class TestCaseController extends Controller
         ]);
     }
 
+    /*
+
     public function store(Request $request, Project $project, Session $session)
     {
         $formFields = $request->validate([
@@ -47,6 +49,34 @@ class TestCaseController extends Controller
         return back()->with('message','Test Case created Successfully!');
 
     }
+    */
+
+    public function store(Request $request, Project $project, Session $session)
+    {
+        $formFields = $request->validate([
+            'testCaseText' => 'required',
+            'testCaseTime' => 'required'
+        ]);
+
+        if($request->hasFile('testCaseImage')){
+            $image = $request->file('testCaseImage');
+            $imageName = time() . '-' . $image->getClientOriginalName();
+
+            $image->move(public_path('uploaded_files'), $imageName);
+
+            $formFields['testCaseImage'] = $imageName;
+        }
+
+        $formFields['session_id'] = $session->id;
+        $formFields['user_id'] = auth()->id();
+
+        TestCase::create($formFields);
+
+        return back()->with('message','Test Case created Successfully!');
+
+    }
+
+
 
     // Show Edit Test Case Form
     public function edit(Project $project, Session $session){
