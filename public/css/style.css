@@ -242,7 +242,10 @@ textarea:focus {
 
 @media (max-width: 767px) {
     .header {
-      font-size: 2rem; /* Equivalent to 32px */
+      font-size: 2rem;
+    }
+    .btn{
+        font-size: 0.875rem;
     }
   }
 
