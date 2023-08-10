@@ -91,7 +91,8 @@ class ExportTestersResponse implements FromView, WithHeadings,ShouldAutoSize, Wi
         $drawings = [];
 
         foreach ($testcases as $index => $testCase) {
-            $imagePath = str_replace('/', '\\', storage_path('app\public\\' . $testCase->testCaseImage));
+            //$imagePath = str_replace('/', '\\', storage_path('app\public\\' . $testCase->testCaseImage));
+            $imagePath = str_replace('/', '\\', public_path('uploaded_files/' . $testCase->testCaseImage));
             if (file_exists($imagePath)) {
                 $desiredWidth = 250; // Desired width in pixels
                 $desiredHeight = 120; // Desired height in pixels
@@ -117,7 +118,7 @@ class ExportTestersResponse implements FromView, WithHeadings,ShouldAutoSize, Wi
                 $drawing->setOffsetY(5);
                 $drawing->setWidth($scaledWidth);
                 $drawing->setHeight($scaledHeight);
-                $drawing->setCoordinates('B' . ($index + 8));
+                $drawing->setCoordinates('B' . ($index + 6));
 
                 $drawings[] = $drawing;
             }

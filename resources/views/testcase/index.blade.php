@@ -37,7 +37,10 @@
                                 <tr>
                                     <td >
                                         <div class="tc-img-container ">
+                                            <!--
                                             <img src="{{$testcase->testCaseImage ? asset('storage/'.$testcase->testCaseImage) : asset('/images/no-pictures.png') }}" alt="">
+                                            -->
+                                            <img src="{{$testcase->testCaseImage ? asset('uploaded_files/'.$testcase->testCaseImage) : asset('/images/no-pictures.png') }}" alt="">
                                         </div>
                                     </td>
                                     <td>
