@@ -54,12 +54,18 @@ class ProjectController extends Controller
     }
 
     public function MyProjects(){
-        return view('projects.myprojects', [
-            'projects' => Project::latest() //return  project id from tester table then return that projects
-                ->filter(request(['search']))
-                ->where('user_id', auth()->id()) // see only projects created
-                ->paginate(5)
-        ]);
+
+        if(auth()){
+            return view('projects.myprojects', [
+                'projects' => Project::latest() //return  project id from tester table then return that projects
+                    ->filter(request(['search']))
+                    ->where('user_id', auth()->id()) // see only projects created
+                    ->paginate(5)
+            ]);
+        }
+        else
+            return view('users.login');
+
 
     }
 

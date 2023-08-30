@@ -7,11 +7,19 @@ use App\Models\User;
 use App\Models\Tester;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index(){
 
+    }
+
+    public function login(){
+        if(!Auth::check())
+        return view('users.login');
+        else
+        return back();
     }
 
     // Show Register User Form
@@ -111,17 +119,24 @@ class UserController extends Controller
 
     //Login User
     public function authenticate(Request $request){
-        $formFields = $request ->validate([
-            'username' => 'required',
-            'password' => 'required'
-        ]);
+        if(!Auth::check()){
+            $formFields = $request ->validate([
+                'username' => 'required',
+                'password' => 'required'
+            ]);
 
-        if(auth()->attempt($formFields)){
-            $request->session()->regenerate();
-            return redirect('/')->with('message','You are now logged in');
+            if(auth()->attempt($formFields)){
+                $request->session()->regenerate();
+                return redirect('/all-projects')->with('message','You are now logged in');
+            }
+
+            return back()->withErrors(['password'=>'Invalid Credentials'])->onlyInput('username');
         }
+        else
+            return back()->with('message','You have been logged in');
 
-        return back()->withErrors(['password'=>'Invalid Credentials'])->onlyInput('username');
+
+
     }
 
 

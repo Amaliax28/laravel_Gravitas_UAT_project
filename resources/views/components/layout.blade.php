@@ -11,7 +11,7 @@
                                 <img src="{{ auth()->user()->userImage ? asset('storage/' . auth()->user()->userImage) : asset('images/user.png') }}"
                                     alt="profile-pic">
                             </div>
-                            <div class="username  mx-auto">
+                            <div class="username mx-auto">
                                 {{ auth()->user()->username }}
                             </div>
                         </div>

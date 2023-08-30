@@ -1,12 +1,15 @@
 <x-layout>
     <x-content>
         <div>
+
             <x-navbar>
-                <x-searchbar/>
-                @if(Auth::check() && !(Auth::user()->roles == 'tester') )
-                    <button class="h-100 btn blue btn-create-project" id="create-project-btn" data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">Create project</button>
-                @endif
+                <x-searchbar>
+                    @if(Auth::check() && !(Auth::user()->roles == 'tester') )
+                        <button class="h-100 btn blue btn-create-project" id="create-project-btn" data-bs-target="#new-project-modal" data-bs-toggle="modal" type="button">Create project</button>
+                    @endif
+                </x-searchbar>
             </x-navbar>
+
         </div>
             <x-pageTitle>My Projects</x-pageTitle>
         <div class="content">

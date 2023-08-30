@@ -106,7 +106,11 @@ class TestCaseController extends Controller
 
 
         if($request->hasFile('testCaseImage')){
-            $formFields['testCaseImage'] = $request->file('testCaseImage')->store('testcase','public');
+            $image = $request->file('testCaseImage');
+            $imageName = time() . '-' . $image->getClientOriginalName();
+            $image->move(public_path('uploaded_files'), $imageName);
+            $formFields['testCaseImage'] = $imageName;
+            //$formFields['testCaseImage'] = $request->file('testCaseImage')->store('testcase','public');
         }
 
         $testCase->update($formFields);

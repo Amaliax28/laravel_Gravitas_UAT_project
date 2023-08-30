@@ -23,9 +23,9 @@ use App\Http\Controllers\ImportExportController;
 |
 */
 
-
 // All Projects
 Route::get('/',[ProjectController::class,'index'])->middleware('auth');
+// All Projects
 Route::get('/all-projects',[ProjectController::class,'index'])->middleware('auth');
 
 // Store New Project Data
@@ -119,6 +119,11 @@ Route::post('/logout',[UserController::class,'logout'])->middleware('auth');
 //Show Login Form
 Route::get('/login', function () {return view('users/login');})->name('login')->middleware('guest');
                                                                                 //so when logged in cannot see
+/*
+Route::get('/', [UserController::class,'login']);
+Route::get('/login', [UserController::class,'login']);
+*/
+
 //Log In User
 Route::post('/users/authenticate',[UserController::class,'authenticate'])->middleware('guest');
 

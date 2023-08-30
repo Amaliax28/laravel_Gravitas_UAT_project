@@ -11,12 +11,11 @@
                         <label for="testCaseImage">Upload Image</label>
                     </div>
                     <div class="col">
-                        <label for="projectImage">
-                            <input class="form-control d-none" id="testCaseImage{{$testcase->id}}" type="file" accept="image/*"
-                                name="testCaseImage" onchange="preview1(event, '{{$testcase->id}}')">
-                            <div
+                        <label for="testCaseImage{{$testcase->id}}">
+                            <input class="form-control d-none" id="testCaseImage{{$testcase->id}}" type="file" accept="image/*" name="testCaseImage" onchange="preview1(event,{{ $testcase->id}})">
+                           <div
                                 class="img-box testcase  overflow-hidden position-relative d-flex align-items-center justify-content-center">
-                                <img src="{{$testcase->testCaseImage ? asset('storage/'.$testcase->testCaseImage) : asset('images/no-photo.png') }}" id="frame{{$testcase->id}}" alt="Test Case Image" class="w-100 h-100 object-fit-contain" id="frame">
+                                <img src="{{$testcase->testCaseImage ? asset('uploaded_files/'.$testcase->testCaseImage) : asset('images/no-photo.png') }}" id="frame{{$testcase->id}}" alt="Test Case Image" class="w-100 h-100 object-fit-contain" id="frame">
                                 <i class="d-none" id="add-logo{{$testcase->id}}">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -70,6 +69,9 @@
         </x-modal-form>
     </x-modal-content>
     <script>
+        function test(){
+            console.log("masuk");
+        }
         // For Image Preview when Image is Uploaded
         function preview1(event,testcaseId) {
             var addLogo = document.getElementById('add-logo' + testcaseId);
