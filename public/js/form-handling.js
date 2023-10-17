@@ -32,11 +32,9 @@ if (form) {
         "input:not(#userImage), select:not(#roles)",
     );
     const createUserBtn = document.getElementById("createUserBtn");
-    const password = document.getElementById("password");
 
     document.addEventListener("DOMContentLoaded", function () {
         createUserBtn.disabled = true;
-        password.value = "";
     });
     function checkInputs() {
         let allInputsFilled = true;
