@@ -32,7 +32,15 @@
                     <tbody>
                         @unless(count($projects)==0)
                             @foreach($projects as $project)
-                                <x-grey-table-row :project="$project" />
+                                @php
+                                    $val = [];
+                                    $val[] = $project->id;
+                                    $val[] = $project->projectImg;
+                                    $val[] = $project->projectName;
+                                    $val[] = $project->projectDetails;
+                                    $val[] = $project->status;
+                                @endphp
+                                <x-grey-table-row :value="$val" />
                             @endforeach
                         @else
                             <tr >

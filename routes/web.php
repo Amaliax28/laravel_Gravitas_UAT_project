@@ -22,6 +22,10 @@ use App\Http\Controllers\ImportExportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Fallback route
+Route::fallback(function () {
+    return redirect('/login');
+});
 
 // All Projects
 Route::get('/',[ProjectController::class,'index'])->middleware('auth');
@@ -99,16 +103,27 @@ Route::put('/response/{response}',[ResponseController::class,'updateStatus'])->m
 // Show Submitted Responses
 Route::get('/project/{project}/session/{session}/tester/{user}/responses',[ResponseController::class,'index'])->middleware('auth');
 
-
+//Show List of Users
+Route::get('/user-list',[UserController::class,'index'])->middleware('auth');
 
 // Show Create User Form
-Route::get('/register',[UserController::class,'show'])->middleware('auth');
+Route::get('/register',[UserController::class,'create'])->middleware('auth');
+Route::get('/new-user',[UserController::class,'create'])->middleware('auth');
 
 // Store User Data
 Route::post('/users',[UserController::class,'store'])->middleware('auth');
 
-// Show Edit User Form
+// Show User Info for New User Created
+Route::get('/user/{user}',[UserController::class,'show'])->middleware('auth');
+
+// Delete User
+Route::delete('/delete-user/{user}/',[UserController::class,'destroy'])->middleware('auth');
+
+// Show Edit Profile Form for Logged In User
 Route::get('/profile-settings',[UserController::class,'edit'])->middleware('auth');
+
+// Update Users Data
+Route::put('/user/{user}/update',[UserController::class,'updateUsers'])->middleware('auth');
 
 // Update User Data
 Route::put('/users/{user}',[UserController::class,'update'])->middleware('auth');

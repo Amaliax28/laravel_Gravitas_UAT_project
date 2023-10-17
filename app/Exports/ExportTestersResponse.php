@@ -41,6 +41,7 @@ class ExportTestersResponse implements FromView, WithHeadings,ShouldAutoSize, Wi
         });
 
         $userIds = Tester::where('projects_id',$session->projects_id)->pluck('user_id'); //Fetching all testers within that session
+
         $usersInfo = User::whereIn('id', $userIds)->select('id', 'username')->get();
 
         $testersInfo = $usersInfo->map(function($userInfo) use ($session, $testCases) {
@@ -90,6 +91,9 @@ class ExportTestersResponse implements FromView, WithHeadings,ShouldAutoSize, Wi
 
         $drawings = [];
 
+        $userIds = Tester::where('projects_id',$session->projects_id)->pluck('user_id'); //Fetching all testers within that session
+        $count = $userIds->count();
+
         foreach ($testcases as $index => $testCase) {
             //$imagePath = str_replace('/', '\\', storage_path('app\public\\' . $testCase->testCaseImage));
             //this works on localhost bottom here ye
@@ -120,7 +124,7 @@ class ExportTestersResponse implements FromView, WithHeadings,ShouldAutoSize, Wi
                 $drawing->setOffsetY(5);
                 $drawing->setWidth($scaledWidth);
                 $drawing->setHeight($scaledHeight);
-                $drawing->setCoordinates('B' . ($index + 6));
+                $drawing->setCoordinates('B' . ($count + $index + 6));
 
                 $drawings[] = $drawing;
             }

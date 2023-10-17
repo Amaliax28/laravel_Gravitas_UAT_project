@@ -88,7 +88,7 @@ class ExportResponses implements FromCollection, WithHeadings, WithDrawings, Sho
 
         foreach ($this->testcase as $index => $testCase) {
             //$imagePath = str_replace('/', '\\', storage_path('app/public/' . $testCase->testCaseImage));
-            $imagePath = str_replace('/', '\\', public_path('uploaded_files' . $testCase->testCaseImage));
+            $imagePath = public_path('uploaded_files/' . $testCase->testCaseImage);
             if (file_exists($imagePath)) {
                 $desiredWidth = 250; // Desired width in pixels
                 $desiredHeight = 120; // Desired height in pixels

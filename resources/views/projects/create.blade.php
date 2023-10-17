@@ -7,10 +7,10 @@
                     <div class="col-auto label-container">
                         <label for="projectImg">Project Image</label>
                     </div>
-                    <div class="col  project-image-col" >
-                        <label for="projectImage" >
+                    <div class="col  project-image-col">
+                        <label for="projectImage">
                             <input class="form-control d-none" id="projectImage" type="file" accept="image/*"
-                                name="projectImg" onchange="preview()" >
+                                name="projectImg" onchange="preview()">
                             <div
                                 class="img-box overflow-hidden position-relative d-flex align-items-center justify-content-center">
                                 <img src="#" alt="" class=" d-none " id="frame">
@@ -51,7 +51,8 @@
                         <label for="projectName">Project Name</label>
                     </div>
                     <div class="col">
-                        <input type="text" name="projectName" id="projectName" class="modal-input-border" maxlength="30">
+                        <input type="text" name="projectName" id="projectName" class="modal-input-border"
+                            maxlength="30">
                     </div>
                 </div>
                 <div class="row m-0 form-row">
@@ -59,7 +60,7 @@
                         <label for="projectName">Details</label>
                     </div>
                     <div class="col">
-                        <textarea name="projectDetails" id="projectDetails"  maxlength="200" class="modal-input-border"></textarea>
+                        <textarea name="projectDetails" id="projectDetails" maxlength="200" class="modal-input-border"></textarea>
                     </div>
                 </div>
                 <div class="row m-0 form-row">
@@ -90,16 +91,4 @@
         </x-modal-form>
     </x-modal-content>
 </x-modal-layout>
-<script>
-    //DISABLE BUTTON UNTILL ALL FIELDS ARE FILLED
-    const form = document.getElementById("modal-form");
-    const submitBtn = document.getElementById("submitBtn");
-    const inputs = form.querySelectorAll("input,textarea");
-    inputs.forEach((input) => {
-        input.addEventListener("input", () => {
-            const allFilled = [...inputs].every((input) => input.value !== "");
-            submitBtn.disabled = !allFilled;
-        });
-    });
-</script>
-
+<script src="{{ asset('js/modal-form-handling.js') }}"></script>

@@ -2,12 +2,12 @@
     <x-content>
         <div>
             <div class="back-btn-container">
-                <x-back-btn href="/project/{{$project->id}}/session/{{$session->id}}/testers" />
+                <x-back-btn href="/project/{{ $project->id }}/session/{{ $session->id }}/testers" />
             </div>
             <x-navbar>
                 <x-searchbar>
                     <button class="h-100 btn blue btn-create-project" id="create-project-btn"
-                    data-bs-target="#new-testcase-modal" data-bs-toggle="modal" type="button">
+                        data-bs-target="#new-testcase-modal" data-bs-toggle="modal" type="button">
                         Create test case
                     </button>
                 </x-searchbar>
@@ -24,35 +24,35 @@
                         <col class="dtls">
                         <col class="status">
                     </colgroup>
-                    <thead >
-                    <tr>
-                        <th>Image</th>
-                        <th>Details</th>
-                        <th  class="text-center"></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Details</th>
+                            <th class="text-center"></th>
+                        </tr>
                     </thead>
                     <tbody>
-                        @unless (count($testcases)==0 )
-                            @foreach ($testcases as $testcase )
+                        @unless (count($testcases) == 0)
+                            @foreach ($testcases as $testcase)
                                 <tr>
-                                    <td >
+                                    <td>
                                         <div class="tc-img-container ">
                                             <!--
-                                            <img src="{{$testcase->testCaseImage ? asset('storage/'.$testcase->testCaseImage) : asset('/images/no-pictures.png') }}" alt="">
-                                            -->
-                                            <img src="{{$testcase->testCaseImage ? asset('uploaded_files/'.$testcase->testCaseImage) : asset('/images/no-pictures.png') }}" alt="">
+                                                                                                                                                                                                                        <img src="{{ $testcase->testCaseImage ? asset('storage/testcase/' . $testcase->testCaseImage) : asset('/images/no-pictures.png') }}" alt="">
+                                                                                                                                                                                                                        -->
+                                            <img src="{{ $testcase->testCaseImage ? asset('uploaded_files/' . $testcase->testCaseImage) : asset('/images/no-pictures.png') }}"
+                                                alt="">
                                         </div>
                                     </td>
                                     <td>
                                         <div class="tbl-content">
-                                            {{$testcase->testCaseText}}
+                                            {{ $testcase->testCaseText }}
                                         </div>
                                     </td>
                                     <td>
                                         <div class="ellipisis-btn text-center">
                                             <button class="border-0 bg-transparent p-0 m-0" type="button"
-                                                id="dropdownMenuButton" data-bs-toggle="dropdown"
-                                                aria-expanded="false">
+                                                id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <svg width="32" height="16" viewBox="0 0 32 16" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <circle cx="7.9" cy="7.9" r="1.9" fill="#9CA3AF" />
@@ -62,17 +62,17 @@
                                             </button>
                                             <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuButton">
                                                 <li class="p-0">
-                                                    <button data-bs-target="#modal-edit-testcase-{{$testcase['id']}}" data-bs-toggle="modal" type="button">Edit Test Case</button>
+                                                    <button data-bs-target="#modal-edit-testcase-{{ $testcase['id'] }}"
+                                                        data-bs-toggle="modal" type="button">Edit Test Case</button>
                                                 </li>
                                                 <li class="p-0">
-                                                    <button data-bs-target="#modal-delete" data-bs-toggle="modal"
-                                                        type="button">Delete Test Case</button>
+                                                    <button data-bs-target="#modal-delete-testcase-{{ $testcase->id }}"
+                                                        data-bs-toggle="modal" type="button">Delete Test Case</button>
                                                 </li>
                                             </ul>
                                         </div>
                                     </td>
                                 </tr>
-
                             @endforeach
                         @else
                             <tr>
@@ -84,15 +84,16 @@
             </div>
         </div>
         <x-pagination>
-            {{$testcases->links('pagination::bootstrap-5')}}
+            {{ $testcases->links('pagination::bootstrap-5') }}
         </x-pagination>
         <x-pageFooter />
     </x-content>
     @include('testcase.create')
-    @unless (count($testcases)==0 )
-        @foreach ($testcases as $testcase )
+    @unless (count($testcases) == 0)
+        @foreach ($testcases as $testcase)
             @include('testcase.edit', ['testcase' => $testcase])
+            <x-modal-delete :data="$testcase" name="testcase"
+                action="/project/{{ $project->id }}/session/{{ $session->id }}/testcase/{{ $testcase->id }}/delete" />
         @endforeach
-        @include('testcase.destroy',['testcase' => $testcase, 'project' => $project, 'session' => $session])
     @endunless
 </x-layout>

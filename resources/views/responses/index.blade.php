@@ -1,6 +1,6 @@
 <x-layout>
     @auth
-    <x-content class="response">
+        <x-content class="response">
             @unless (count($responses) == 0 && count($response) == 0)
                 @php
                     $testcase = $testcases->first();
@@ -8,18 +8,18 @@
                 @endphp
 
                 <div class="back-btn-container">
-                   <x-back-btn href="/project/{{$project->id}}/session/{{$session->id}}/testers" />
+                    <x-back-btn href="/project/{{ $project->id }}/session/{{ $session->id }}/testers" />
                 </div>
                 @if ($testcase->id == $response->test_cases_id)
-                    <x-testcase-form action="/response/{{$response->id}}" id="responseForm" >
+                    <x-testcase-form action="/response/{{ $response->id }}" id="responseForm">
                         @method('PUT')
                         <div>
                             <div class="header response align-items-center">
                                 <div class="title ">
-                                    <span class="grey">{{$project->projectName}} / </span>
-                                    {{$session->sessionName}}
+                                    <span class="grey">{{ $project->projectName }} / </span>
+                                    {{ $session->sessionName }}
                                 </div>
-                                <div class=" ms-auto responseStatus" id="responseStatus">{{$response->status}}</div>
+                                <div class=" ms-auto responseStatus" id="responseStatus">{{ $response->status }}</div>
 
                                 <div class="priorities-cont  ms-md-5 d-flex align-items-center ">
                                     <select class="priorities pe-none" name="priorities" id="priorities" disabled>
@@ -35,11 +35,11 @@
 
                         <x-testcase-section>
                             <div class="response-container">
-                                 <!-- left side col-->
+                                <!-- left side col-->
                                 <div class="item-col">
                                     <!-- test case image -->
                                     <x-testcase-img>
-                                        <img src="{{ $testcase->testCaseImage ? asset('storage/' . $testcase->testCaseImage) : asset('images/no-pictures.png') }}"
+                                        <img src="{{ $testcase->testCaseImage ? asset('uploaded_files/' . $testcase->testCaseImage) : asset('images/no-pictures.png') }}"
                                             alt="test case image">
                                     </x-testcase-img>
                                     <!-- test case comment -->
@@ -51,8 +51,8 @@
                                         <x-testcase-comment>{{ $testcase->testCaseText }}</x-testcase-comment>
                                     </x-testcase-comment-container>
                                 </div>
-                                   <!-- right side col-->
-                                   <div class="item-col">
+                                <!-- right side col-->
+                                <div class="item-col">
                                     <!-- response requirements -->
                                     <x-testcase-requirements-container>
                                         <div class="row table-header ">
@@ -60,31 +60,38 @@
                                         </div>
                                         <div class="row table-btn table-header {{ $errors->has('desktop') ? 'bg-primary-color' : '' }}"
                                             id="desktopCont">
-                                            <button class="btn accept pe-none" id="btnAcceptDesktop" type="button" data-active{{ $response->desktop == 'accept' ? '=true' : '' }}>
+                                            <button class="btn accept pe-none" id="btnAcceptDesktop" type="button"
+                                                data-active{{ $response->desktop == 'accept' ? '=true' : '' }}>
                                                 Accept
-                                                <input type="radio" name="desktop" value="accept" class="d-none"  id="acceptDesktop"
-                                                {{ $response->desktop == 'accept' ? 'checked' : '' }} disabled>
+                                                <input type="radio" name="desktop" value="accept" class="d-none"
+                                                    id="acceptDesktop" {{ $response->desktop == 'accept' ? 'checked' : '' }}
+                                                    disabled>
                                             </button>
-                                            <button class="btn reject pe-none" id="btnRejectDesktop" type="button" data-active{{ $response->desktop == 'reject' ? '=true' : '' }}>
+                                            <button class="btn reject pe-none" id="btnRejectDesktop" type="button"
+                                                data-active{{ $response->desktop == 'reject' ? '=true' : '' }}>
                                                 Reject
-                                                <input type="radio" name="desktop" value="reject" class="d-none"  id="rejectDesktop"
-                                                {{ $response->desktop == 'reject' ? 'checked' : '' }} disabled>
+                                                <input type="radio" name="desktop" value="reject" class="d-none"
+                                                    id="rejectDesktop" {{ $response->desktop == 'reject' ? 'checked' : '' }}
+                                                    disabled>
                                             </button>
                                         </div>
                                         <div class="row table-header">
                                             Mobile acceptance requirements
                                         </div>
-                                        <div class="row table-btn @error('desktop') bg-primary-color @enderror"
-                                            id="mobileCont">
-                                            <button class="btn accept pe-none" id="btnAcceptMobile" type="button"  data-active{{ $response->mobile == 'accept' ? '=true' : '' }}>
+                                        <div class="row table-btn @error('desktop') bg-primary-color @enderror" id="mobileCont">
+                                            <button class="btn accept pe-none" id="btnAcceptMobile" type="button"
+                                                data-active{{ $response->mobile == 'accept' ? '=true' : '' }}>
                                                 Accept
-                                                <input type="radio" name="mobile" value="accept" class="d-none"  id="acceptMobile"
-                                                    {{ $response->mobile == 'accept' ? 'checked' : '' }} disabled>
+                                                <input type="radio" name="mobile" value="accept" class="d-none"
+                                                    id="acceptMobile" {{ $response->mobile == 'accept' ? 'checked' : '' }}
+                                                    disabled>
                                             </button>
-                                            <button class="btn reject pe-none" id="btnRejectMobile" type="button"  data-active{{ $response->mobile == 'reject' ? '=true' : '' }}>
+                                            <button class="btn reject pe-none" id="btnRejectMobile" type="button"
+                                                data-active{{ $response->mobile == 'reject' ? '=true' : '' }}>
                                                 Reject
-                                                <input type="radio" name="mobile" value="reject" class="d-none"  id="rejectMobile"
-                                                {{ $response->mobile == 'reject' ? 'checked' : '' }} disabled>
+                                                <input type="radio" name="mobile" value="reject" class="d-none"
+                                                    id="rejectMobile" {{ $response->mobile == 'reject' ? 'checked' : '' }}
+                                                    disabled>
                                             </button>
                                         </div>
                                     </x-testcase-requirements-container>
@@ -105,7 +112,7 @@
                                                 </div>
                                                 <div class=" feedback">
                                                     <textarea name="responseText" id="feedback" class="text-start overflow-hidden"
-                                                        placeholder="Leave your comment here ..." oninput="autoResize()" disabled>{{$response->responseText}}</textarea>
+                                                        placeholder="Leave your comment here ..." oninput="autoResize()" disabled>{{ $response->responseText }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,12 +148,12 @@
                                                 <div class="attachment " id="fileInfoBox">
                                                     <span class="file-name" id="fileName">
                                                         @php
-                                                        if (isset($response->feedbackFile) && $response->feedbackFile !== null) {
-                                                            $responseFile = $response->feedbackFile;
-                                                            $fileName = explode('_', $responseFile)[1];
-                                                            echo $fileName;
-                                                        }
-                                                    @endphp
+                                                            if (isset($response->feedbackFile) && $response->feedbackFile !== null) {
+                                                                $responseFile = $response->feedbackFile;
+                                                                $fileName = explode('_', $responseFile)[1];
+                                                                echo $fileName;
+                                                            }
+                                                        @endphp
                                                     </span>
                                                     <span class="file-format" id="fileFormat"></span>
                                                     <span class="close-button">
@@ -169,10 +176,13 @@
                             </div>
                         </x-testcase-section>
                         <div class="w-100 text-end  ">
-                            <input type="time" name="responseTime" id="responseTime" value="{{$response->responseTime ? $response->responseTime : "" }}" required>
+                            <input type="time" name="responseTime" id="responseTime"
+                                value="{{ $response->responseTime ? $response->responseTime : '' }}" required>
                             <input type="hidden" name="statusHidden" id="statusHidden">
-                            <button class="btn blue submitResponseBtn" id="btnMarkComplete" type="button">Mark as Complete</button>
-                            <button class="btn blue submitResponseBtn d-none" id="btnMarkIncomplete" type="button">Mark as Incomplete</button>
+                            <button class="btn blue submitResponseBtn" id="btnMarkComplete" type="button">Mark as
+                                Complete</button>
+                            <button class="btn blue submitResponseBtn d-none" id="btnMarkIncomplete" type="button">Mark as
+                                Incomplete</button>
                         </div>
                         <script>
                             const btnMarkComplete = document.getElementById('btnMarkComplete');
@@ -181,44 +191,41 @@
                             const responseForm = document.getElementById('responseForm');
                             const responseStatus = document.getElementById('responseStatus');
 
-                            if(responseStatus.textContent == "COMPLETE"){
+                            if (responseStatus.textContent == "COMPLETE") {
                                 responseStatus.classList.add('complete');
                                 btnMarkIncomplete.classList.remove('d-none');
                                 btnMarkComplete.classList.add('d-none');
-                            }
-                            else if(responseStatus.textContent == "INCOMPLETE"){
+                            } else if (responseStatus.textContent == "INCOMPLETE") {
                                 btnMarkComplete.classList.remove('d-none');
                                 btnMarkIncomplete.classList.add('d-none');
 
-                            }
-                            else if(responseStatus.textContent == "ONGOING" || responseStatus.textContent == "PENDING"){
+                            } else if (responseStatus.textContent == "ONGOING" || responseStatus.textContent == "PENDING") {
                                 responseStatus.classList.add('ongoing');
 
 
                             }
 
 
-                            btnMarkComplete.addEventListener('click',()=>{
+                            btnMarkComplete.addEventListener('click', () => {
                                 statusHidden.value = "COMPLETE";
                                 btnMarkComplete.classList.add('d-none');
                                 responseForm.submit();
                             })
 
-                            btnMarkIncomplete.addEventListener('click',()=>{
+                            btnMarkIncomplete.addEventListener('click', () => {
                                 statusHidden.value = "INCOMPLETE";
                                 btnMarkIncomplete.classList.remove('d-none');
                                 responseForm.submit();
 
                             })
-
                         </script>
                     </x-testcase-form>
                 @endif
             @endunless
-        <x-pagination>
-            {{$testcases->links('pagination::bootstrap-5-notext', ['responses' => $responses])}}
-        </x-pagination>
-    </x-content>
+            <x-pagination>
+                {{ $testcases->links('pagination::bootstrap-5-notext', ['responses' => $responses]) }}
+            </x-pagination>
+        </x-content>
     @endauth
 
     @php
@@ -234,7 +241,6 @@
                 option.selected = true;
             }
         }
-
 
         // RESPONSE PAGE //
 
@@ -261,19 +267,18 @@
         }
         // DISPLAY FILE NAME
 
-        function showFileInfo( p) {
+        function showFileInfo(p) {
             const fileNameSpan = document.getElementById(p + 'Name');
             const fileFormat = document.getElementById(p + 'Format');
             const fileInfoBox = document.getElementById(p + 'InfoBox');
 
-            if (fileNameSpan.textContent.trim().length > 0 ) {
+            if (fileNameSpan.textContent.trim().length > 0) {
                 let filePath = "";
 
-                if(p == "img"){
+                if (p == "img") {
                     filePath = @json($response->feedbackImg);
 
-                }
-                else if(p == "file"){
+                } else if (p == "file") {
                     filePath = @json($response->feedbackFile);
                 }
 
@@ -287,7 +292,7 @@
                 fileFormat.textContent = format;
 
                 fileInfoBox.addEventListener('click', () => {
-                                                // Create a fetch request to fetch the image file
+                    // Create a fetch request to fetch the image file
                     fetch(filePath)
                         .then(response => response.blob())
                         .then(blob => {
@@ -311,7 +316,7 @@
             }
         }
 
-        showFileInfo( 'img');
+        showFileInfo('img');
         showFileInfo('file');
 
         // FOR ACCEPTANCE REQUIREMENTS INPUT

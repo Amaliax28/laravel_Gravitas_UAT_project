@@ -1,13 +1,15 @@
 <x-layout>
     @auth
-    <x-content class="response">
+        <x-content class="response">
             @unless (count($testcases) == 0 && count($responses) == 0)
                 @php
                     $testcase = $testcases->first();
                     $response = $responses->first();
                 @endphp
                 @if ($testcase->id == $response->test_cases_id)
-                    <x-testcase-form action="/session/{{ $session->id }}/tester/{{auth()->id()}}/response/{{$response->id}}/testcase/{{ $testcase->id }}" enctype="multipart/form-data">
+                    <x-testcase-form
+                        action="/session/{{ $session->id }}/tester/{{ auth()->id() }}/response/{{ $response->id }}/testcase/{{ $testcase->id }}"
+                        enctype="multipart/form-data">
                         @method('PUT')
                         <div>
                             <x-back-btn />
@@ -29,7 +31,7 @@
                         </div>
                         <x-testcase-section>
                             <div class="response-container">
-                                 <!-- left side col-->
+                                <!-- left side col-->
                                 <div class="item-col">
                                     <!-- test case image -->
                                     <x-testcase-img>
@@ -45,8 +47,8 @@
                                         <x-testcase-comment>{{ $testcase->testCaseText }}</x-testcase-comment>
                                     </x-testcase-comment-container>
                                 </div>
-                                   <!-- right side col-->
-                                   <div class="item-col">
+                                <!-- right side col-->
+                                <div class="item-col">
                                     <!-- response requirements -->
                                     <x-testcase-requirements-container>
                                         <div class="row table-header ">
@@ -54,31 +56,34 @@
                                         </div>
                                         <div class="row table-btn table-header {{ $errors->has('desktop') ? 'bg-primary-color' : '' }}"
                                             id="desktopCont">
-                                            <button class="btn accept" id="btnAcceptDesktop" type="button" data-active{{ $response->desktop == 'accept' ? '=true' : '' }}>
+                                            <button class="btn accept" id="btnAcceptDesktop" type="button"
+                                                data-active{{ $response->desktop == 'accept' ? '=true' : '' }}>
                                                 Accept
-                                                <input type="radio" name="desktop" value="accept" class="d-none"  id="acceptDesktop"
-                                                {{ $response->desktop == 'accept' ? 'checked' : '' }}>
+                                                <input type="radio" name="desktop" value="accept" class="d-none"
+                                                    id="acceptDesktop" {{ $response->desktop == 'accept' ? 'checked' : '' }}>
                                             </button>
-                                            <button class="btn reject" id="btnRejectDesktop" type="button" data-active{{ $response->desktop == 'reject' ? '=true' : '' }}>
+                                            <button class="btn reject" id="btnRejectDesktop" type="button"
+                                                data-active{{ $response->desktop == 'reject' ? '=true' : '' }}>
                                                 Reject
-                                                <input type="radio" name="desktop" value="reject" class="d-none"  id="rejectDesktop"
-                                                {{ $response->desktop == 'reject' ? 'checked' : '' }}>
+                                                <input type="radio" name="desktop" value="reject" class="d-none"
+                                                    id="rejectDesktop" {{ $response->desktop == 'reject' ? 'checked' : '' }}>
                                             </button>
                                         </div>
                                         <div class="row table-header">
                                             Mobile acceptance requirements
                                         </div>
-                                        <div class="row table-btn @error('desktop') bg-primary-color @enderror"
-                                            id="mobileCont">
-                                            <button class="btn accept" id="btnAcceptMobile" type="button"  data-active{{ $response->mobile == 'accept' ? '=true' : '' }}>
+                                        <div class="row table-btn @error('desktop') bg-primary-color @enderror" id="mobileCont">
+                                            <button class="btn accept" id="btnAcceptMobile" type="button"
+                                                data-active{{ $response->mobile == 'accept' ? '=true' : '' }}>
                                                 Accept
-                                                <input type="radio" name="mobile" value="accept" class="d-none"  id="acceptMobile"
-                                                    {{ $response->mobile == 'accept' ? 'checked' : '' }}>
+                                                <input type="radio" name="mobile" value="accept" class="d-none"
+                                                    id="acceptMobile" {{ $response->mobile == 'accept' ? 'checked' : '' }}>
                                             </button>
-                                            <button class="btn reject " id="btnRejectMobile" type="button"  data-active{{ $response->mobile == 'reject' ? '=true' : '' }}>
+                                            <button class="btn reject " id="btnRejectMobile" type="button"
+                                                data-active{{ $response->mobile == 'reject' ? '=true' : '' }}>
                                                 Reject
-                                                <input type="radio" name="mobile" value="reject" class="d-none"  id="rejectMobile"
-                                                {{ $response->mobile == 'reject' ? 'checked' : '' }}>
+                                                <input type="radio" name="mobile" value="reject" class="d-none"
+                                                    id="rejectMobile" {{ $response->mobile == 'reject' ? 'checked' : '' }}>
                                             </button>
                                         </div>
                                     </x-testcase-requirements-container>
@@ -99,7 +104,7 @@
                                                 </div>
                                                 <div class=" feedback">
                                                     <textarea name="responseText" id="feedback" class="text-start overflow-hidden"
-                                                        placeholder="Leave your comment here ..." oninput="autoResize()">{{$response->responseText}}</textarea>
+                                                        placeholder="Leave your comment here ..." oninput="autoResize()">{{ $response->responseText }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,12 +140,12 @@
                                                 <div class="attachment pe-none" id="fileInfoBox">
                                                     <span class="file-name" id="fileName">
                                                         @php
-                                                        if (isset($response->feedbackFile) && $response->feedbackFile !== null) {
-                                                            $responseFile = $response->feedbackFile;
-                                                            $fileName = explode('_', $responseFile)[1];
-                                                            echo $fileName;
-                                                        }
-                                                    @endphp
+                                                            if (isset($response->feedbackFile) && $response->feedbackFile !== null) {
+                                                                $responseFile = $response->feedbackFile;
+                                                                $fileName = explode('_', $responseFile)[1];
+                                                                echo $fileName;
+                                                            }
+                                                        @endphp
                                                     </span>
                                                     <span class="file-format" id="fileFormat"></span>
                                                     <span class="close-button">
@@ -163,15 +168,15 @@
                             </div>
                         </x-testcase-section>
                         <div class="w-100 text-end next-cont">
-                                <button class="btn blue submitResponseBtn" >Update Test Case</button>
+                            <button class="btn blue submitResponseBtn">Update Test Case</button>
                         </div>
                     </x-testcase-form>
                 @endif
             @endunless
-        <x-pagination>
-            {{$testcases->links('pagination::bootstrap-5-notext', ['responses' => $responses])}}
-        </x-pagination>
-    </x-content>
+            <x-pagination>
+                {{ $testcases->links('pagination::bootstrap-5-notext', ['responses' => $responses]) }}
+            </x-pagination>
+        </x-content>
     @endauth
 
     @php

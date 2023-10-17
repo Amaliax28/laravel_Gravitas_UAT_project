@@ -76,5 +76,10 @@ class User extends Authenticatable
         return $this->hasMany(Response::class,'user_id');
     }
 
+    public function __toString() {
+        return "user";
+    }
+
+
 
 }

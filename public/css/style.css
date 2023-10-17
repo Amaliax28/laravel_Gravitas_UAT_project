@@ -276,8 +276,12 @@ textarea:focus {
 
 .text-error {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 0.6rem;
     color: var(--red-color);
+}
+
+.border-none {
+    border: none;
 }
 
 /* LOGIN PAGE */
@@ -388,7 +392,7 @@ textarea:focus {
 .login input:focus,
 .input-group input:focus {
     outline: none;
-    border-color: var(--black-color);
+    border: none;
 }
 
 .login-gap {
@@ -513,6 +517,11 @@ textarea:focus {
 .sidebar .dropdown-content li:hover a {
     fill: var(--white-color);
     color: var(--white-color);
+}
+
+.sidebar .item-cont {
+    width: fit-content;
+    margin-left: 38%;
 }
 
 .hover-icon {
@@ -802,6 +811,14 @@ textarea:focus {
     width: 86px;
 }
 
+.table-grey .email {
+    width: 280px;
+}
+
+.table-grey .role {
+    width: 100px;
+}
+
 .table-grey .testcase-img {
     width: 200px;
 }
@@ -835,7 +852,8 @@ textarea:focus {
 }
 
 @media (max-width: 1300px) {
-    .table-grey col:nth-child(3) {
+    .table-grey .dtls,
+    .table-grey .dtls2 {
         width: 87px;
     }
 }
@@ -1138,11 +1156,6 @@ textarea:focus {
     background-color: var(--white, #fbfbfa);
 }
 
-.form-row input:focus,
-.modal-form select:focus {
-    border-color: var(--black-color);
-}
-
 .responseStatus {
     padding: 10px;
     border-radius: 6px;
@@ -1168,10 +1181,6 @@ textarea:focus {
 .modal-form textarea {
     height: 72px;
     resize: none;
-}
-
-.modal-form textarea:focus {
-    border-color: var(--black-color);
 }
 
 textarea.comment {
@@ -1696,14 +1705,27 @@ select.priorities:focus {
 }
 
 .form-field:focus,
-.register-user select:focus {
+.register-user select:focus,
+.reg-field .input-group:checked,
+.reg-field .input-group:focus-within,
+.form-row input:focus,
+.modal-form select:focus,
+.modal-form textarea:focus,
+.reg-field select:focus-visible {
     outline: 0 !important;
     background: transparent !important;
-    box-shadow: -5px 0 8px -5px rgba(0, 83, 228, 0.3) !important;
+    border: 1px solid rgba(0, 83, 228, 0.3);
+    box-shadow: none !important;
 }
 
 .register-user .password input:focus {
     box-shadow: -5px 0 8px -5px rgba(255, 55, 0, 0.3) !important;
+}
+
+.password-toggle {
+    background: none;
+    border-left: none;
+    cursor: pointer;
 }
 
 @media (min-width: 1200px) {
@@ -1728,69 +1750,79 @@ select.priorities:focus {
     }
 }
 
-/* CREATE NEW USER
-.content.user-form{
-    padding-left:30px;
-    height:100%;
-    max-height: 100%;
+/*CREATE USER NEW */
+.register-wrapper {
+    display: grid;
+    grid-template-columns: max-content 60%;
+    grid-template-rows: repeat(5, fit-content);
+    row-gap: 20px;
 }
 
-.user-form .form-label {
-    text-align: left;
-}
-
-.user-form .form-group {
+.reg-label {
     display: flex;
-    flex-direction: row;
-    height:45px;
-    min-height: 45px;
-    margin-top: 14px;
-
+    align-items: center;
 }
-
-.user-form .form-group.upload-img{
-    height:120px;
-}
-
-.user-form .form-group label:nth-child(1) {
-    flex-basis: 16%;
-    padding-right: 10px;
-}
-
-.user-form .form-group input,
-.user-form .form-group textarea,
-.user-form select,
-.user-form .input-group {
-    width: 300px;
-
-}
-
-.user-form .form-control, .user-form select, .user-form .form-group .img-box, .user-form .input-group{
-    border-radius: 10px;
-    border: 1px solid var(--light-grey-1, #DBDBDB);
-    background-color:transparent;
-    padding:10px 20px;
-
-}
-
-
-  @media (max-width: 992px) {
-    .user-form .form-group label:nth-child(1)  {
-        flex-basis: 40%;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .user-form .form-group label:nth-child(1) {
-        flex-basis: 30%;
-    }
-  }
-
-  .user-form .btn-container{
-    padding-top: 90px;
+.reg-field input,
+.reg-field .input-group,
+.reg-field select {
     width: 100%;
-  }
-  */
+    background-color: transparent;
+    color: #383839;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: box-shadow 0.3s ease;
+}
+.reg-field {
+    padding-left: 50px;
+}
+
+.reg-field select {
+    background: transparent;
+}
+
+.reg-field .img-box {
+    width: 120px;
+    height: 120px;
+    max-height: 120px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 1px solid var(--light-grey-1, #dbdbdb);
+    background: transparent;
+}
+.reg-field img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.reg-field .overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.reg-field .img-box:hover .overlay {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.registerUser .btn-cont {
+    padding: 90px 0 10px 100px;
+}
+
+.gen-password {
+    display: grid;
+    row-gap: 10px;
+}
+
+.error-cont {
+    padding-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+}
 
 /* PAGINATION */
 .pagination-small-txt,

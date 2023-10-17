@@ -1,9 +1,9 @@
 @props(['testcase'])
-<x-modal-layout id="modal-edit-testcase-{{$testcase->id}}" class="modal-form">
+<x-modal-layout id="modal-edit-testcase-{{ $testcase->id }}" class="modal-form">
     <x-modal-header>Edit test case details</x-modal-header>
     <x-modal-content>
-        <x-modal-form action="/project/{{$project->id}}/session/{{$session->id}}/testcase/{{$testcase->id}}" id="modal-form"
-            class="tc-modal">
+        <x-modal-form action="/project/{{ $project->id }}/session/{{ $session->id }}/testcase/{{ $testcase->id }}"
+            id="modal-form" class="tc-modal">
             @method('PUT')
             <div class="form-container ">
                 <div class="row m-0">
@@ -11,12 +11,15 @@
                         <label for="testCaseImage">Upload Image</label>
                     </div>
                     <div class="col">
-                        <label for="testCaseImage{{$testcase->id}}">
-                            <input class="form-control d-none" id="testCaseImage{{$testcase->id}}" type="file" accept="image/*" name="testCaseImage" onchange="preview1(event,{{ $testcase->id}})">
-                           <div
+                        <label for="testCaseImage{{ $testcase->id }}">
+                            <input class="form-control d-none" id="testCaseImage{{ $testcase->id }}" type="file"
+                                accept="image/*" name="testCaseImage" onchange="preview1(event,{{ $testcase->id }})">
+                            <div
                                 class="img-box testcase  overflow-hidden position-relative d-flex align-items-center justify-content-center">
-                                <img src="{{$testcase->testCaseImage ? asset('uploaded_files/'.$testcase->testCaseImage) : asset('images/no-photo.png') }}" id="frame{{$testcase->id}}" alt="Test Case Image" class="w-100 h-100 object-fit-contain" id="frame">
-                                <i class="d-none" id="add-logo{{$testcase->id}}">
+                                <img src="{{ $testcase->testCaseImage ? asset('uploaded_files/' . $testcase->testCaseImage) : asset('images/no-photo.png') }}"
+                                    id="frame{{ $testcase->id }}" alt="Test Case Image"
+                                    class="w-100 h-100 object-fit-contain" id="frame">
+                                <i class="d-none" id="add-logo{{ $testcase->id }}">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 5V19" stroke="#383839" stroke-width="1.5" stroke-linecap="round"
@@ -49,7 +52,7 @@
                         <label for="testCaseText">Comment</label>
                     </div>
                     <div class="col">
-                        <textarea name="testCaseText"  id="testCaseText{{$testcase->id}}" class="modal-input-border comment">{{$testcase['testCaseText']}}</textarea>
+                        <textarea name="testCaseText" id="testCaseText{{ $testcase->id }}" class="modal-input-border comment">{{ $testcase['testCaseText'] }}</textarea>
                     </div>
                 </div>
                 <div class="row m-0 form-row">
@@ -57,7 +60,8 @@
                         <label for="testCaseText">Time</label>
                     </div>
                     <div class="col">
-                        <input type="time" name="testCaseTime" id="testCaseTime" value={{$testcase->testCaseTime}} required>
+                        <input type="time" name="testCaseTime" id="testCaseTime" value={{ $testcase->testCaseTime }}
+                            required>
                     </div>
                 </div>
 
@@ -68,17 +72,5 @@
             </div>
         </x-modal-form>
     </x-modal-content>
-    <script>
-        function test(){
-            console.log("masuk");
-        }
-        // For Image Preview when Image is Uploaded
-        function preview1(event,testcaseId) {
-            var addLogo = document.getElementById('add-logo' + testcaseId);
-            var frame = document.getElementById('frame' + testcaseId);
-            frame.classList.remove("d-none");//display image
-            addLogo.classList.add("d-none"); // remove the add icon
-            frame.src = URL.createObjectURL(event.target.files[0]);
-        }
-    </script>
+    <script src="{{ asset('js/form-handling.js') }}"></script>
 </x-modal-layout>

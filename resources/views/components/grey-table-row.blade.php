@@ -1,26 +1,20 @@
-@props(['project'])
+@props(['value'])
+@props(['val'])
 
-<tr onclick="window.location.href='/project/{{$project['id']}}/sessions';">
+
+<tr onclick="window.location.href='/project/{{$value[0]}}/sessions';">
     <td >
         <div class="img-container">
-            <img src="{{$project->projectImg ? asset('storage/'.$project->projectImg) : asset('images/no-image.png') }}" alt="">
+            <img src="{{$value[1] ? asset('storage/'.$value[1]) : asset('images/no-image.png') }}" alt="">
         </div>
     </td>
-    <td>
-        <div class="tbl-content">
-            {{$project->projectName}}
-        </div>
-    </td>
-    <td>
-        <div class="tbl-content">
-            {{ $project->projectDetails}}
-        </div>
-    </td>
-    <td>
-        <div class="status-box">
-            {{ $project->status}}
-        </div>
-    </td>
+    @for ($i = 2; $i<count($value); $i++)
+        <td>
+            <div class="{{$value[$i] == 'INCOMPLETE' || $value[$i] == 'COMPLETE' ? 'status-box' : 'tbl-content'}}">
+                {{$value[$i]}}
+            </div>
+        </td>
+    @endfor
 
 </tr>
 
